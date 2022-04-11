@@ -31,9 +31,26 @@
 ## node_modules
 - When you run npm install, npm installs the required packages into your project root directory in a folder called node_modules.
 ## commands
-1. npm -l 
+
+1. npm install 
+   flags: - -S is the same as --save, and -D is the same as --save-dev
+  * npm install <package> 
+  * npm i
+
+2. npm uninstall 
+  * npm uninstall <package>
+  * npm un
+
+3. npm update
+  flags: -g
+  * npm update <package>
+  * npm up
+
+4. npm -l
     - dispay full usage info
 
+5. 
 
-## refrences
+
+## reference
 - [The Complete Guide To Npm ](https://medium.com/analytics-vidhya/the-complete-guide-to-npm-ac52fbc43f6c)
