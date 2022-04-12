@@ -1,6 +1,6 @@
 {
   "name": "npm-commants",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "it is npm commants practice",
   "main": "index.js",
   "scripts": {
