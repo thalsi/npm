@@ -32,25 +32,49 @@
 - When you run npm install, npm installs the required packages into your project root directory in a folder called node_modules.
 ## commands
 
+0. npm init 
+ * command:- npm init 
+ * flag:- -y
+
 1. npm install 
-   flags: - -S is the same as --save, and -D is the same as --save-dev
-  * npm install <package> 
-  * npm i
+  * command:- npm i
+  * command:-  install <package> 
+  * flags: - -S is the same as --save, and -D is the same as --save-dev
 
 2. npm uninstall 
-  * npm uninstall <package>
-  * npm un
+  * command:- npm uninstall <package>
+  * command:- npm un
 
 3. npm update
-  flags: -g
-  * npm update <package>
-  * npm up
+  * flags: -g
+  * command:
+  - npm update <package>
+  * command:- npm up
 
 4. npm -l
-    - dispay full usage info
+  - dispay full usage info.
 
-5. 
+5. npm outdated
+ - installed packages are currently outdated.
 
+6. npm remove
+ - uninstall the pakage.json
+
+7. npm audit 
+ - npm audit is a built-in security feature, that scans your project for security vulnerabilities.
+
+8. npm cache clean --force
+- The errors are categorized as:
+- Random errors
+- Permission errors
+- No space
+- Version control error
+- Invalid JSON 
+
+9. npm ci 
+ - There is a package-lock.json 
+ - The project must have an existing package-lock.json
+ - It will never write to package.json or any of the package-locks: installs are essentially frozen.
 
 ## reference
 - [The Complete Guide To Npm ](https://medium.com/analytics-vidhya/the-complete-guide-to-npm-ac52fbc43f6c)
