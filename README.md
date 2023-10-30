@@ -1,3 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# npm
+1. What is npm?
+  - npm (Node Pakage Manager) is a package manager for the Javascript programming lamguage.
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # npm
  - what is npm ?  NPM  is a package managar for javascpit.  
  - it is the largest online package manager repository.
