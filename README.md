@@ -10,7 +10,9 @@
     3. The registry
         - Registry is an online repository hosts JavaScript packages.
 
-
+## 1. package.json
+  
+  -  
 
 
 
