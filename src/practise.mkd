@@ -1,0 +1,22 @@
+# npm
+
+1. What is npm?
+  - npm (Node Pakage Manager) is a package manager for the Javascript programming lamguage.
+  - npm is the world's largest Software Registry.
+  - NPM consists of three main parts:  
+    1. The website
+    2. The Command Line Interface (CLI)
+        - CLI is tool for publishing and downloading packages.
+    3. The registry
+        - Registry is an online repository hosts JavaScript packages.
+
+## 1. package.json
+  
+  -  
+## What? Which? Where?
+
+
+
+# Refereces
+- [geeksforgeeks](https://www.geeksforgeeks.org/node-js-npm-node-package-manager/)
+
