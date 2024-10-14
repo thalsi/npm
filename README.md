@@ -13,7 +13,26 @@
     3. Registry
         - The npm registry is a massive public database(online repository) of JavaScript packages
 
+2. Installation
+  - NPM comes pre-installed with Node.js.
 
+## Commands
 
-[chatgtp]:https://chatgpt.com/c/6706c57b-cce8-800c-acaf-6d28fcaf23bb
-[gemine]:https://gemini.google.com/app/02ff5b5d933bf109?utm_source=google&utm_medium=cpc&utm_campaign=2024enIN_gemfeb&gad_source=1&gclid=Cj0KCQjw05i4BhDiARIsAB_2wfA5Ba8lnf_3b_dNxw4RRDKWIId9tRkXUa22G-acdrinqODOtVN_QIgaAnvZEALw_wcB&gclsrc=aw.ds
+1. Basic npm Commands
+
+| Command	            | Alias	         |                     Description                    |
+|:-----------------   |:--------------:|:---------------------------------------------------|
+| npm init	          | -	             | Initializes a new project with a package.json file.|
+| npm init -y	        | -	             | Initializes a project with default values.         |
+| npm install	        | npm i	         | Installs all dependencies listed in package.json.  |
+| npm install <pkg>	  | npm i <pkg>	   | Installs a specific package locally to the project.|
+| npm uninstall <pkg>	| npm rm <pkg>	 | Removes a package from the project dependencies.   |
+| npm update	        | -	             | Updates all packages to their latest version.      |
+| npm outdated	      | -	             | Shows outdated packages in the project.            |
+| npm run <script>	  | -	             | Runs a script defined in the package.json.         |
+| npm start	          | -	             | Runs the start script defined in package.json.     |
+| npm stop	          | -	             | Runs the stop script defined in package.json.      |
+| npm restart	        | -	             | Restarts a Node.js application.                    |
+| npm test	          | -	             | Runs the test script defined in package.json.      |
+| npm link	          | -	             | Links a global package as a local dependency.      |
+
