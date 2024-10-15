@@ -18,7 +18,7 @@
 
 ## Commands
 
-1. Basic npm Commands
+###### 1. Basic npm Commands
 
 | Command	            | Alias	         |                     Description                    |
 |:-----------------   |:--------------:|:---------------------------------------------------|
@@ -36,3 +36,14 @@
 | npm test	          | -	             | Runs the test script defined in package.json.      |
 | npm link	          | -	             | Links a global package as a local dependency.      |
 
+###### 2. Package Management
+
+| Command	                      | Alias	          |                     Description                         |                                  |
+|:------------------------------|:---------------:|:--------------------------------------------------------|----------------------------------|
+| npm list	                    | npm ls	        | Lists installed packages.	                              |--global, --depth, --json, --long |
+| npm list -g                   | npm ls -g	      | Lists globally installed packages.	                    |--depth, --json, --long           |
+| npm install --global <pkg>    |	npm i -g <pkg>	| Installs a package globally.	                          |--force, --no-save, --dry-run     |
+| npm uninstall --global <pkg>  |	npm rm -g <pkg>	| Uninstalls a global package.	                          |--force, --dry-run                |
+| npm prune		                  | -               | Removes extraneous packages not listed in package.json.	|--production                      |
+| npm cache clean --force		    | -               | Clears npm’s cache.	                                    |--force, --global, --offline      |
+| npm rebuild		                | -               | Rebuilds native addons of installed packages.	          |--global, --build-from-source     |
