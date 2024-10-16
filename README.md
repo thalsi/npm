@@ -36,9 +36,11 @@
 | npm test	          | -	             | Runs the test script defined in package.json.      |
 | npm link	          | -	             | Links a global package as a local dependency.      |
 
+
+
 ###### 2. Package Management
 
-| Command	                      | Alias	          |                     Description                         |                                  |
+| Command	                      | Alias	          |                     Description                         |      Common Flags                |
 |:------------------------------|:---------------:|:--------------------------------------------------------|----------------------------------|
 | npm list	                    | npm ls	        | Lists installed packages.	                              |--global, --depth, --json, --long |
 | npm list -g                   | npm ls -g	      | Lists globally installed packages.	                    |--depth, --json, --long           |
@@ -47,3 +49,25 @@
 | npm prune		                  | -               | Removes extraneous packages not listed in package.json.	|--production                      |
 | npm cache clean --force		    | -               | Clears npm’s cache.	                                    |--force, --global, --offline      |
 | npm rebuild		                | -               | Rebuilds native addons of installed packages.	          |--global, --build-from-source     |
+
+
+
+###### 3. Versioning & Publishing
+
+| Command	                        | Alias	    | Description	                                                | Common Flags                            |
+|:--------------------------------|:----------|:------------------------------------------------------------|:----------------------------------------|
+| npm version <update>	          | -	        | Bumps the package version (patch, minor, major).	          | --force, --no-git-tag-version, --preid  |
+| npm publish	                    | -	        | Publishes the package to the npm registry.	                | --tag, --access, --dry-run, --otp       |
+| npm deprecate <pkg> <message>	  | -	        | Marks a package or version as deprecated.	                  | --otp                                   |
+| npm unpublish <pkg>	            | -	        | Removes a package from the npm registry (within 72 hours).	| --force, --otp                          |
+| npm login	                      | -	        | Authenticates a user with npm registry credentials.	        | --registry, --scope, --auth-type        |
+| npm logout    	                | -	        | Logs out a user from the npm registry.	                    | --registry, --scope                     |
+
+
+###### 4. Auditing & Security
+
+| Command	                        | Alias	    | Description	                                                              | Common Flags                        |
+|:--------------------------------|:----------|:--------------------------------------------------------------------------|:------------------------------------|
+| npm audit           	          | -	        | Audits project for security vulnerabilities.                              | --json, --production, --audit-level |
+| npm audit fix                   | -         | Automatically fixes security vulnerabilities.                             | --force, --only, --dry-run          |
+| npm audit fix --force           | -         | Forces npm to fix vulnerabilities even if it results in breaking changes. | --only, --dry-run                   |
