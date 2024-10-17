@@ -71,3 +71,14 @@
 | npm audit           	          | -	        | Audits project for security vulnerabilities.                              | --json, --production, --audit-level |
 | npm audit fix                   | -         | Automatically fixes security vulnerabilities.                             | --force, --only, --dry-run          |
 | npm audit fix --force           | -         | Forces npm to fix vulnerabilities even if it results in breaking changes. | --only, --dry-run                   |
+
+
+###### 4. Configuration & Information
+
+| Command	                        | Alias	    | Description	                                                              | Common Flags                        |
+|:--------------------------------|:----------|:--------------------------------------------------------------------------|:------------------------------------|
+| npm config set <key> <value>	  | -	        | Sets an npm configuration option.	                                        | --global, --location                |
+| npm config get <key>	          | -	        | Gets an npm configuration option.	                                        | --global, --location                |
+| npm config list	                | -	        | Lists all npm configuration options.	                                    | --json, --global                    |
+| npm info <pkg>	                | -	        | Displays metadata and information about a package.	                      | --json, --registry, --silent        |
+| npm view <pkg>	                | -	        | Another command for displaying package metadata, similar to npm info.	    | --json, --registry, --silent        |
