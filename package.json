@@ -1,0 +1,34 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "1. What is npm?\r   - npm (Node Pakage Manager) is a package manager for the Javascript programming lamguage.\r   - npm is the world's largest Software Registry.\r   - NPM consists of three main parts:  \r     1. Website (npmjs.com)\r       - The official npm website allows users to discover, browse, and search for packages.\r       - lets users create and manage accounts, as well as publish and manage packages\r     2. CLI (Command Line Interface)\r         - The npm CLI is a tool used to interact with npm directly from the command line.\r     3. Registry\r         - The npm registry is a massive public database(online repository) of JavaScript packages",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "echo ...PRE START...",
+    "start": "echo  ...STARTING...",
+    "poststart": "echo ...POST START...",
+    "prebuild": "echo ...PRE BUILD...",
+    "build": "echo ...BUILDING...",
+    "postbuild": "echo ....POST BUILD....",
+    "pretest": "echo ...PRE TESTING...",
+    "test": "echo ...TESTING....",
+    "posttest": "echo ...POST TESTING...",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thalsi/npm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thalsi/npm/issues"
+  },
+  "homepage": "https://github.com/thalsi/npm#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^9.29.0",
+    "husky": "^9.1.7"
+  }
+}

@@ -1,0 +1,7 @@
+# 🚫 Husky Git hooks cache
+.husky/_/
+
+# 🛠 Node
+node_modules/
+package-lock.json
+npm-debug.log

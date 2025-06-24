@@ -22,16 +22,16 @@
 
 | Command	            | Alias	         |                                                Description                                            |
 |:-----------------   |:--------------:|:------------------------------------------------------------------------------------------------------|
+| npm init	          | -	             | Initializes a new package.json file interactively.	--force, --scope, --yes                            |
+| npm init -y	        | -	             | Creates package.json with default values.	--scope, --yes                                             |
+| npm start	          | -	             | Runs the start script defined in package.json.	--silent                                               |
 | npm install	        | npm i	         | Installs all dependencies listed in package.json.	--save, --save-dev, --no-save, --global, --force   |
 | npm install <pkg>	  | npm i <pkg>	   | Installs a specific package locally to the project.	--save, --save-dev, --global, --no-save, --force |
 | npm uninstall <pkg>	| npm rm <pkg>	 | Uninstalls a specific package from the project.	--save, --global, --force, --dry-run                 |
 | npm update	        | -	             | Updates all packages to the latest version.	--global, --force, --dry-run, --depth                    |
 | npm outdated	      | -	             | Lists outdated packages in the project.	--global, --depth, --json, --long                            |
 | npm run <script>	  | -	             | Runs a script defined in package.json.	--if-present, --verbose, --silent                              |
-| npm start	          | -	             | Runs the start script defined in package.json.	--silent                                               |
 | npm test	          | -	             | Runs the test script defined in package.json.	--silent, --verbose                                    |
-| npm init	          | -	             | Initializes a new package.json file interactively.	--force, --scope, --yes                            |
-| npm init -y	        | -	             | Creates package.json with default values.	--scope, --yes                                             |
 | npm link	          | -	             | Links a global package to the current local project.	--global                                         |
 
 
@@ -114,5 +114,98 @@
 | --audit-level=<level>           |	Sets minimum vulnerability level for audit failures (low, moderate, high, critical). |
 
 
+# 📦 NPM Mastery Checklist
 
-[ ] https://chatgpt.com/share/67bd6177-4720-800c-9b42-2a301460c181
+A complete roadmap to go from beginner to pro with npm (Node Package Manager).
+
+---
+
+## ✅ Level 1: NPM Basics (Beginner)
+
+- [x] Install Node.js (npm comes with it)
+- [x] Check versions: `node -v`, `npm -v`
+- [x] Initialize project: `npm init` or `npm init -y`
+- [x] Install a package: `npm install axios`
+- [x] Understand `dependencies` vs `devDependencies`
+- [x] Remove a package: `npm uninstall axios`
+- [x] Install a dev-only tool: `npm install eslint --save-dev`
+- [x] Understand `package.json` and `package-lock.json`
+
+---
+
+## ✅ Level 2: Scripts & Daily Usage
+
+- [x] Add custom scripts to `package.json`
+- [x] Run scripts: `npm run start`, `npm run build`, etc.
+- [x] Use `pre` and `post` script hooks (e.g., `prebuild`)
+- [x] Understand lifecycle scripts (prepare, install)
+- [x] Install CLI tools globally: `npm install -g typescript`
+- [x] Use `npm audit` and `npm audit fix` for security
+- [x] Explore `npm list`, `npm outdated`
+
+---
+
+## ✅ Level 3: Dependency Management (Advanced)
+
+- [ ] Understand semantic versioning: `^`, `~`, `*`, exact
+- [ ] Lock versions with `package-lock.json`
+- [ ] Use `.npmrc` for custom config (registry, token, proxy)
+- [ ] Learn `peerDependencies` for shared runtime packages
+- [ ] Use `optionalDependencies` for non-critical packages
+- [ ] Link local packages with `npm link`
+
+---
+
+## ✅ Level 4: Publishing Packages
+
+- [ ] Create a public/private npm package
+- [ ] Add `"main"`, `"types"`, `"files"` in `package.json`
+- [ ] Publish: `npm publish`
+- [ ] Unpublish: `npm unpublish`
+- [ ] Bump version: `npm version patch/minor/major`
+- [ ] Use `.npmignore` to exclude files
+- [ ] Create scoped packages: `@your-scope/package`
+
+---
+
+## ✅ Level 5: Monorepos & Workspaces
+
+- [ ] Use `"workspaces"` in `package.json`
+- [ ] Manage multiple packages in one repo
+- [ ] Install dependencies in workspace folders
+- [ ] Build shared code with `npm link`
+
+---
+
+## ✅ Level 6: Pro Tools & CI/CD
+
+- [ ] Use `npx` to run tools without global install
+- [ ] Use `npm ci` for faster clean installs in CI
+- [ ] Analyze bundle size: `webpack-bundle-analyzer`
+- [ ] Use `husky` + `lint-staged` for Git hooks
+- [ ] Automate tasks with `npm-run-all` or `concurrently`
+- [ ] Use `npm-check` to update interactively
+
+---
+
+## 🧠 Bonus Knowledge
+
+- [ ] What’s the difference between `npm`, `npx`, and `yarn`?
+- [ ] Explore the `node_modules` folder structure
+- [ ] Learn about ESModules vs CommonJS in packages
+- [ ] Understand npm registries (default and custom)
+- [ ] Set up `.npmrc` auth tokens for private packages
+
+---
+
+## 📁 Sample Project Structure
+
+```
+my-app/
+├── node_modules/
+├── package.json
+├── package-lock.json
+├── .npmrc
+├── src/
+└── README.md
+```
