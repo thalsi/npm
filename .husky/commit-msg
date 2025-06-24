@@ -1,1 +1,3 @@
+echo Valid Commit Types: feat, fix, docs, style, refactor, test, perf, build, chore, ci
+
 npx --no -- commitlint --edit "$1"
