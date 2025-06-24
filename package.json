@@ -1,7 +1,7 @@
 {
   "name": "npm",
   "version": "1.0.0",
-  "description": "1. What is npm?\r   - npm (Node Pakage Manager) is a package manager for the Javascript programming lamguage.\r   - npm is the world's largest Software Registry.\r   - NPM consists of three main parts:  \r     1. Website (npmjs.com)\r       - The official npm website allows users to discover, browse, and search for packages.\r       - lets users create and manage accounts, as well as publish and manage packages\r     2. CLI (Command Line Interface)\r         - The npm CLI is a tool used to interact with npm directly from the command line.\r     3. Registry\r         - The npm registry is a massive public database(online repository) of JavaScript packages",
+  "description":"",
   "main": "index.js",
   "scripts": {
     "prestart": "echo ...PRE START...",
@@ -26,8 +26,9 @@
     "url": "https://github.com/thalsi/npm/issues"
   },
   "homepage": "https://github.com/thalsi/npm#readme",
-  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "eslint": "^9.29.0",
     "husky": "^9.1.7"
   }
