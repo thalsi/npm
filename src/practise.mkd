@@ -31,3 +31,161 @@ https://chatgpt.com/c/6704181a-3b78-800c-9c40-02d4ed22bc1f
 - package-lock.json is generated automatically for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs can generate identical trees. This is used to save an exact copy of the packages to ensure that the program works the same on different machines.
 ## node_modules
 - When you run npm install, npm installs the required packages into your project root directory in a folder called node_modules.
+---
+## 🧾 What is .npmrc?
+
+- .npmrc is a settings file for npm (Node Package Manager).
+It tells npm how to behave when installing or publishing packages.
+
+🧠 Why use .npmrc?
+  - Imagine you are working on a project.
+
+You want:
+  - To download packages from a private registry (like your company’s server).
+  - To use a login token for authentication.
+  - To install packages exactly like 1.2.3, not ^1.2.3.
+  - To make npm faster and quieter in a CI/CD pipeline.
+  - To use different settings for each project.
+
+Choose your use-case:
+  - ✅ Use npm with private company registry
+      - Example: https://npm.my-company.com/
+  - ✅ Use GitHub Packages
+      - Example: @your-name/package from GitHub
+  - ✅ Use GitLab, Nexus, or Artifactory registry
+  - ✅ Add proxy (for working inside office network)
+  - ✅ CI/CD setup (like GitHub Actions, GitLab CI)
+
+---
+##  When to Use peerDependencies?
+
+- When you create a library/package, you use some common packages — like react, angular, or rxjs.
+But you don’t want to install them again. You want the main app to give them.
+
+So you say:
+> “I need react, but the user must install it. I will only use it.”
+
+That’s what peerDependencies means.
+
+### 🔁 Why Use peerDependencies?
+Because:
+  - Don’t want duplicate lodash.
+  - Want to use same lodash in many boxes.
+  - Want main app to control version.
+
+1. package.json for Your Angular Library (my-ui-lib)
+
+```
+{
+  "name": "my-ui-lib",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "rxjs": "^7.8.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "rxjs": "^7.8.0",
+    "typescript": "~5.2.0"
+  },
+  "ngPackage": {
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+      "entryFile": "src/public-api.ts"
+    }
+  }
+}
+```
+✅ This says:
+  peerDependencies: used by the main app
+  devDependencies: used by your library only, for local development and building
+
+2. package.json for Your Angular App (my-app)
+```
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.0.0",
+    "rxjs": "^7.8.0",
+    "my-ui-lib": "file:../dist/my-ui-lib"
+  },
+  "devDependencies": {
+    "@angular/cli": "^17.0.0",
+    "@angular/compiler-cli": "^17.0.0",
+    "typescript": "~5.2.0"
+  }
+}
+```
+✅ This means:
+The app installs my-ui-lib
+Also installs the shared dependencies: Angular and RxJS
+---
+
+## optionalDependencies 
+In your package.json, the optionalDependencies field is used to specify non-critical packages — these are packages your project can work without, but will use if available.
+
+When to Use optionalDependencies
+Use optionalDependencies when:
+  - A package is useful but not required.
+  - Your app should still run even if the package fails to install.
+  - You’re supporting multiple platforms where some packages only work on certain OSes.
+
+```
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.3"   // macOS-only; optional for other OSes
+  }
+}
+In this example, if fsevents fails to install (like on Windows), npm will not stop the install process.
+
+```
+## npm link
+Linking local packages with npm link is useful when you're developing multiple Node.js packages and want to test one package (my-lib) inside another project (my-app) without publishing it to npm.
+
+Simple Steps to Use npm link (for Local Development)
+
+1. Inside your local library folder (e.g., my-lib)
+```
+cd /path/to/my-lib
+npm link
+```
+This creates a global symlink for my-lib.
+
+2. Inside your consuming project (e.g., my-app)
+```
+cd /path/to/my-app
+npm link my-lib
+```
+This links my-lib into node_modules of my-app from the global symlink.
+
+File Structure Example
+```
+ /projects/
+  ├── my-lib/       ← your local reusable library
+  └── my-app/       ← your application consuming that lib
+```
+-When to Use
+  During active development of local packages.
+  To test changes before publishing to npm.
+---
+
+## To Unlink
+```
+Inside my-app:
+npm unlink my-lib
+
+Optionally, remove global link:
+cd /path/to/my-lib
+npm unlink
+```

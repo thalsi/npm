@@ -147,12 +147,12 @@ A complete roadmap to go from beginner to pro with npm (Node Package Manager).
 
 ## ✅ Level 3: Dependency Management (Advanced)
 
-- [ ] Understand semantic versioning: `^`, `~`, `*`, exact
-- [ ] Lock versions with `package-lock.json`
-- [ ] Use `.npmrc` for custom config (registry, token, proxy)
-- [ ] Learn `peerDependencies` for shared runtime packages
-- [ ] Use `optionalDependencies` for non-critical packages
-- [ ] Link local packages with `npm link`
+- [x] Understand semantic versioning: `^`, `~`, `*`, exact
+- [x] Lock versions with `package-lock.json`
+- [x] Use `.npmrc` for custom config (registry, token, proxy)
+- [x] Learn `peerDependencies` for shared runtime packages
+- [x] Use `optionalDependencies` for non-critical packages
+- [x] Link local packages with `npm link`
 
 ---
 
