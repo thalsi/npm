@@ -158,7 +158,7 @@ A complete roadmap to go from beginner to pro with npm (Node Package Manager).
 
 ## ✅ Level 4: Publishing Packages
 
-- [ ] Create a public/private npm package
+- [x] Create a public/private npm package
 - [ ] Add `"main"`, `"types"`, `"files"` in `package.json`
 - [ ] Publish: `npm publish`
 - [ ] Unpublish: `npm unpublish`

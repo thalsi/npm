@@ -189,3 +189,46 @@ Optionally, remove global link:
 cd /path/to/my-lib
 npm unlink
 ```
+
+## Create a public/private npm package
+complete step-by-step plan to create and publish your own Angular NPM package named ngx-smart-loading.
+
+### Generate the Library
+1. Create Angular Workspace
+  ```
+  ng new ngx-smart-loading-workspace --create-application=false
+  cd ngx-smart-loading-workspace
+  ```
+
+2. Generate Library
+```
+ng generate library ngx-smart-loading
+```
+This will create:
+```
+projects/ngx-smart-loading/
+```
+
+3. 📁 Full Structure for Angular Library: ngx-smart-loading
+
+```
+angular-workspace/             <-- Angular workspace root
+├── angular.json               <-- Workspace config
+├── package.json               <-- Root dependencies
+├── tsconfig.base.json         <-- Shared TypeScript config
+├── projects/                  <-- Contains your library
+│   └── ngx-smart-loading/     <-- Your actual package source code
+│       ├── ng-package.json    <-- ng-packagr config
+│       ├── package.json       <-- Library metadata
+│       ├── README.md
+│       └── src/
+│           ├── public-api.ts  <-- Export public files
+│           └── lib/
+│               ├── smart-loading.module.ts
+│               ├── smart-loading.service.ts
+│               ├── smart-loading.component.ts
+│               ├── smart-loading.directive.ts
+│               └── smart-loading.interceptor.ts
+├── dist/                      <-- Auto-created after build
+│   └── ngx-smart-loading/     <-- Final build output after "ng build ngx-smart-loading"
+```
