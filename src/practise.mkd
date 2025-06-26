@@ -193,23 +193,18 @@ npm unlink
 ## Create a public/private npm package
 complete step-by-step plan to create and publish your own Angular NPM package named ngx-smart-loading.
 
-### Generate the Library
+###  Step 1: Generate the Angular Workspace & Library
 1. Create Angular Workspace
-  ```
-  ng new ngx-smart-loading-workspace --create-application=false
-  cd ngx-smart-loading-workspace
-  ```
 
-2. Generate Library
 ```
+ng new angular-workspace --create-application=false
+cd angular-workspace
+
 ng generate library ngx-smart-loading
-```
-This will create:
-```
-projects/ngx-smart-loading/
+
 ```
 
-3. 📁 Full Structure for Angular Library: ngx-smart-loading
+2. 📁 Full Structure for Angular Library: ngx-smart-loading
 
 ```
 angular-workspace/             <-- Angular workspace root
@@ -232,3 +227,59 @@ angular-workspace/             <-- Angular workspace root
 ├── dist/                      <-- Auto-created after build
 │   └── ngx-smart-loading/     <-- Final build output after "ng build ngx-smart-loading"
 ```
+
+3. Build the Library
+
+```
+ng build ngx-smart-loading
+```
+
+It will output to:
+```
+dist/ngx-smart-loading/
+```
+
+4. Test in a Local App (Optional but Recommended)
+
+1. Option 1 — Link locally
+  ```
+  cd dist/ngx-smart-loading
+  npm link
+  ```
+
+  Then in your test app:
+  ```
+  npm link ngx-smart-loading
+  ```
+
+2. Option 2 — Create test app in same workspace
+
+  ```
+  ng generate application demo-app
+
+  ```
+  Then import SmartLoadingModule in demo-app/src/app/app.module.ts.
+
+5. Prepare for NPM Publish
+
+1. Add metadata to:
+```
+projects/ngx-smart-loading/package.json
+
+```
+
+```
+{
+  "name": "ngx-smart-loading",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/core": "^17.0.0",
+    "@angular/common": "^17.0.0"
+  },
+  "keywords": ["angular", "loader", "spinner", "http", "interceptor"],
+  "author": "Your Name",
+  "license": "MIT"
+}
+
+```
+6. Publish to NPM
