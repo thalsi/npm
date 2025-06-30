@@ -668,4 +668,101 @@ ng build customer-portal
  npm run build:all
 
  ```
+---
+## npx?
 
+npx is a powerful tool that comes with Node.js (since version 5.2.0 of npm) and allows you to run CLI tools without installing them globally.
+
+### Why use npx?
+- Run the latest version of a package.
+- Avoid global installs and pollution.
+- Easily test CLI tools or scripts.
+
+Imagine this:
+
+✅ Without npx
+You have to install a tool first:
+```
+npm install -g create-react-app
+
+```
+This:
+  - Takes space on your system.
+  - Might cause version conflicts.
+  - Pollutes global tools list.
+
+
+
+✅ With npx
+You can use the tool immediately:
+```
+npx create-react-app my-app
+```
+This:
+  - No install needed.
+  - Always runs the latest version.
+  - Temporary — it's deleted after use
+
+---
+
+### npm ci
+
+1. What is npm ci?
+- It is a faster and cleaner way to install node_modules.
+
+2.  Difference: npm install vs npm ci
+| Command       | What it does                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `npm install` | Installs packages normally. May change `package-lock.json`.                                                               |
+| `npm ci`      | Installs packages **exactly as locked**, and **faster**. Never changes `package-lock.json`. Deletes `node_modules` first. |
+
+---
+
+
+
+## webpack-bundle-analyzer
+It's a tool that shows you:
+
+> “Which files and libraries are making your app big.”
+
+It opens a chart in your browser where you can see what’s inside your bundle.
+
+### in angualr
+
+1. Step 1: Build the app for production with source maps
+```
+ng build --configuration production --source-map
+
+```
+> ✅ This creates your optimized bundle and .map files needed for analysis.
+
+2.  Step 2: Install the analyzer tool
+```
+npm install -g source-map-explorer
+
+```
+> This is the recommended tool for Angular projects.
+
+3.  Step 3: Analyze the main bundle
+
+Find your main.*.js file in:
+```
+dist/<your-project-name>/
+
+```
+Run this command:
+```
+npx source-map-explorer dist/your-project-name/main.*.js
+
+```
+
+4. 📈 Result
+It will:
+
+  Open a browser window
+
+  Show a colorful chart:
+
+  Big boxes = big files
+
+  You’ll see what's inside main.js

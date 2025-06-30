@@ -179,9 +179,9 @@ A complete roadmap to go from beginner to pro with npm (Node Package Manager).
 
 ## ✅ Level 6: Pro Tools & CI/CD
 
-- [ ] Use `npx` to run tools without global install
-- [ ] Use `npm ci` for faster clean installs in CI
-- [ ] Analyze bundle size: `webpack-bundle-analyzer`
+- [x] Use `npx` to run tools without global install
+- [x] Use `npm ci` for faster clean installs in CI
+- [x] Analyze bundle size: `webpack-bundle-analyzer`
 - [ ] Use `husky` + `lint-staged` for Git hooks
 - [ ] Automate tasks with `npm-run-all` or `concurrently`
 - [ ] Use `npm-check` to update interactively
