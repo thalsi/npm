@@ -176,13 +176,13 @@ A complete roadmap to go from beginner to pro with npm (Node Package Manager).
 - [x] Build shared code with `npm link`
 
 ---
-
+Git hooks
 ## ✅ Level 6: Pro Tools & CI/CD
 
 - [x] Use `npx` to run tools without global install
 - [x] Use `npm ci` for faster clean installs in CI
 - [x] Analyze bundle size: `webpack-bundle-analyzer`
-- [ ] Use `husky` + `lint-staged` for Git hooks
+- [x] Use `husky` + `lint-staged` for 
 - [ ] Automate tasks with `npm-run-all` or `concurrently`
 - [ ] Use `npm-check` to update interactively
 
@@ -209,4 +209,13 @@ my-app/
 ├── src/
 └── README.md
 ```
+
 ---
+## Git hooks
+
+| Tool       | Purpose                         |
+| ---------- | ------------------------------- |
+| Husky      | Git hooks                       |
+| ESLint     | Code linting                    |
+| Prettier   | Code formatting                 |
+| Commitlint | Commit message rules (optional) |
