@@ -159,21 +159,21 @@ A complete roadmap to go from beginner to pro with npm (Node Package Manager).
 ## ✅ Level 4: Publishing Packages
 
 - [x] Create a public/private npm package
-- [ ] Add `"main"`, `"types"`, `"files"` in `package.json`
-- [ ] Publish: `npm publish`
-- [ ] Unpublish: `npm unpublish`
-- [ ] Bump version: `npm version patch/minor/major`
-- [ ] Use `.npmignore` to exclude files
-- [ ] Create scoped packages: `@your-scope/package`
+- [x] Add `"main"`, `"types"`, `"files"` in `package.json`
+- [x] Publish: `npm publish`
+- [x] Unpublish: `npm unpublish`
+- [x] Bump version: `npm version patch/minor/major`
+- [x] Use `.npmignore` to exclude files
+- [x] Create scoped packages: `@your-scope/package`
 
 ---
 
 ## ✅ Level 5: Monorepos & Workspaces
 
-- [ ] Use `"workspaces"` in `package.json`
-- [ ] Manage multiple packages in one repo
-- [ ] Install dependencies in workspace folders
-- [ ] Build shared code with `npm link`
+- [x] Use `"workspaces"` in `package.json`
+- [x] Manage multiple packages in one repo
+- [x] Install dependencies in workspace folders
+- [x] Build shared code with `npm link`
 
 ---
 

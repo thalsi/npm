@@ -1,7 +1,3 @@
-https://chatgpt.com/c/6706c57b-cce8-800c-acaf-6d28fcaf23bb
-
-https://chatgpt.com/c/6704181a-3b78-800c-9c40-02d4ed22bc1f
-
 
 ## 1. package.json
  - npm init or npm init -y
@@ -283,3 +279,393 @@ projects/ngx-smart-loading/package.json
 
 ```
 6. Publish to NPM
+
+In your terminal (PowerShell or CMD), run:
+```
+npm login
+```
+You’ll be asked for:
+  Username (your npm account username)
+  Password
+  Email
+
+ After login:
+ ```
+cd dist/ngx-spinner-loading
+npm publish --access public
+ ```
+
+ 7. Step-by-Step Setup for GitHub Private Packages
+
+ 1. Prerequisites
+  A GitHub account
+  Your Angular monorepo (e.g., core-monorepo)
+  Your libraries (libs/core, libs/shared-ui)
+  A GitHub Personal Access Token (PAT) with write:packages and read:packages
+
+2. Add package.json in each library
+```
+{
+  "name": "@your-org/core",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "peerDependencies": {
+    "@angular/core": "^16.0.0",
+    "@angular/common": "^16.0.0"
+  }
+}
+```
+3. Add ng-package.json
+```
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/core",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}
+
+```
+4. Build the library
+```
+ng build core
+ng build shared-ui
+
+```
+
+ 5. Authenticate to GitHub Package Registry
+
+ ```
+ npm login --registry=https://npm.pkg.github.com
+
+ ```
+When asked:
+Username: your GitHub username
+Password: your GitHub Personal Access Token
+Email: your GitHub email
+
+📌 Create a token at GitHub PAT settings
+✅ Required scopes: write:packages, read:packages, repo
+
+ 6. Publish the package
+ ```
+    cd dist/core
+    npm publish
+
+    cd ../shared-ui
+    npm publish
+
+ ```
+
+ 7. Install in Client Repo (client-a, etc.)
+
+ In the client repo:
+ Add .npmrc (in root):
+```
+@your-org:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+
+```
+> 🔐 Use a read-only token with read:packages scope
+
+Then install:
+```
+npm install @your-org/core
+npm install @your-org/shared-ui
+
+```
+
+ ---
+
+ ## What is  monorepo in nmp?
+
+ A monorepo (short for monolithic repository) in npm is a single Git repository that contains multiple packages or projects — all managed together in one place.
+
+In the context of npm, a monorepo uses the workspaces feature to manage these multiple packages efficiently.
+
+### 🔍 What is  monorepo in nmp?
+
+A monorepo (short for monolithic repository) in npm is a single Git repository that contains multiple packages or projects — all managed together in one place.
+Instead of this:
+
+✅ repo-1/ → ngx-spinner-loading
+
+✅ repo-2/ → ngx-smart-loading
+
+You use one repo:
+```
+monorepo/
+├── package.json (root) ← defines all workspaces
+├── projects/
+│   ├── ngx-spinner-loading/
+│   │   └── package.json
+│   └── ngx-smart-loading/
+│       └── package.json
+
+```
+
+###  Benefits of Monorepo
+🔗 Easy code sharing between packages
+🔧 Centralized dependency management
+🚀 One place to build, test, and deploy
+🤝 Better collaboration in teams
+📦 Local import: import { SpinnerService } from 'ngx-spinner-loading' even before publishing
+
+---
+
+### complete example of an npm monorepo using workspaces
+
+✅ Goal
+We’ll create a monorepo with two Angular-based libraries:
+
+  ngx-spinner-loading
+  ngx-smart-loading
+
+All managed from a single repository using npm workspaces.
+
+#### Final Folder Structure
+```
+angular-monorepo/
+├── angular.json
+├── package.json             <-- Workspaces + scripts
+├── tsconfig.base.json
+├── projects/
+│   ├── ngx-spinner-loading/
+│   │   ├── ng-package.json
+│   │   ├── package.json
+│   │   └── src/
+│   │       ├── lib/
+│   │       │   └── spinner.service.ts
+│   │       └── public-api.ts
+│   └── ngx-smart-loading/
+│       ├── ng-package.json
+│       ├── package.json
+│       └── src/
+│           ├── lib/
+│           │   └── smart.service.ts
+│           └── public-api.ts
+
+```
+
+#### Step-by-Step Setup Instructions
+
+1. Create Angular Workspace (Empty)
+```
+ng new angular-monorepo --create-application=false
+cd angular-monorepo
+```
+2. Setup Workspaces in package.json
+```
+{
+  "name": "angular-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "projects/ngx-spinner-loading",
+    "projects/ngx-smart-loading"
+  ]
+}
+```
+
+ 3. Create Libraries
+ ```
+ng generate library ngx-spinner-loading --project-root=projects/ngx-spinner-loading
+ng generate library ngx-smart-loading --project-root=projects/ngx-smart-loading
+
+ ```
+> 🔒 "private": true is required when using workspaces in npm.
+
+2. Project-Based Angular Monorepo — designed for internal code sharing between apps and libraries (no npm publishing).
+
+🎯 Goal
+We will:
+
+- Create a main Angular app
+
+- Create a shared library (shared-ui)
+
+- Create a feature module (feature-auth)
+
+- Use both libraries inside the main app
+
+1. step 1: Create Angular Monorepo Workspace
+
+```
+ng new angular-monorepo --create-application=false
+cd angular-monorepo
+```
+
+2. Step 2: Generate App and Libraries
+```
+# Create main application
+ng generate application main-app
+
+# Create shared UI library
+ng generate library shared-ui
+
+# Create feature module library
+ng generate library feature-auth
+
+```
+Folder structure becomes:
+```
+angular-monorepo/
+├── projects/
+│   ├── shared-ui/
+│   └── feature-auth/
+└── src/
+    └── app/  <-- main-app source
+
+```
+
+3. Step 3: Add Code in shared-ui
+
+File: projects/shared-ui/src/lib/shared-ui.module.ts
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SharedButtonComponent } from './shared-button.component';
+
+@NgModule({
+  declarations: [SharedButtonComponent],
+  imports: [CommonModule],
+  exports: [SharedButtonComponent]
+})
+export class SharedUiModule {}
+
+```
+Create component: projects/shared-ui/src/lib/shared-button.component.ts
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'lib-shared-button',
+  template: `<button>Shared Button</button>`,
+})
+export class SharedButtonComponent {}
+
+```
+ Step 4: Use Libraries in App
+
+```
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+
+import { SharedUiModule } from 'shared-ui';
+import { FeatureAuthModule } from 'feature-auth';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    SharedUiModule,
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+```
+
+Edit src/app/app.component.html:
+```
+<h1>Main App</h1>
+<lib-shared-button></lib-shared-button>
+```
+
+5. Step 5 :Serve the App
+```
+ng serve --project=main-app
+
+```
+
+You should see:
+```
+Main App
+[Shared Button]
+```
+
+## Scalable Angular Monorepo
+
+👇 Structure Overview (Simple but Scalable)
+```
+angular-enterprise/
+├── angular.json
+├── projects/
+│   ├── apps/
+│   │   ├── admin-panel/         ← App 1
+│   │   └── customer-portal/     ← App 2
+│   ├── libs/
+│   │   ├── core/                ← Global services, interceptors, models
+│   │   ├── shared-ui/           ← Reusable UI components
+│   │   ├── feature-auth/        ← Auth feature module
+│   │   └── feature-products/    ← Products feature module
+└── tsconfig.base.json
+
+```
+
+### 🛠 Step-by-Step Setup
+
+1. Create Workspace Without App
+```
+ng new angular-enterprise --create-application=false
+cd angular-enterprise
+```
+
+2. Create Apps
+```
+ng generate application admin-panel --project-root=projects/apps/admin-panel
+ng generate application customer-portal --project-root=projects/apps/customer-portal
+
+```
+
+3. Create Core and Shared Libraries
+```
+ng generate library core --project-root=projects/libs/core
+ng generate library shared-ui --project-root=projects/libs/shared-ui
+
+```
+
+4. Create Feature Libraries
+```
+ng generate library feature-auth --project-root=projects/libs/feature-auth
+ng generate library feature-products --project-root=projects/libs/feature-products
+
+```
+
+5. Run Any App
+```
+ng serve --project=admin-panel
+ng serve --project=customer-portal
+
+```
+
+6.  Build 
+
+ 1. Build Everything (Manual)
+ ```
+ng build shared-ui
+ng build feature-auth
+ng build core
+ng build admin-panel
+ng build customer-portal
+
+ ```
+ 2. Build All (with Script)
+
+ In your root package.json, add:
+ ```
+ "scripts": {
+  "build:all": "ng build shared-ui && ng build feature-auth && ng build core && ng build admin-panel"
+}
+
+ ```
+
+ Run it:
+ ```
+ npm run build:all
+
+ ```
+
