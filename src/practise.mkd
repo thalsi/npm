@@ -879,3 +879,155 @@ You’ll see what's inside main.js
 | **Commitlint**           | Checks if commit messages follow rules                     | Commit-msg (via Husky)  |
 | **Conventional Commits** | Standard style for commit messages (e.g., `feat:`, `fix:`) | Commit messages         |
 | **semantic-release**     | Fully automated release system based on commits            | On CI/CD (after commit) |
+
+
+# ✅ Husky + Lint-Staged + ESLint + Prettier Setup Guide
+
+A complete step-by-step setup to run automatic lint and format checks before Git commits.
+
+---
+
+## 🎯 Goal
+
+Use:
+- **Husky** to run Git hooks
+- **Lint-Staged** to run linters only on staged files
+- **ESLint** to fix lint errors
+- **Prettier** to auto-format code
+
+---
+
+## 🔹 Step 1: Install Dev Tools
+
+```bash
+npm install --save-dev husky lint-staged eslint prettier eslint-plugin-prettier eslint-config-prettier
+```
+
+---
+
+## 🔹 Step 2: Setup Husky
+
+### 2.1 Add to `package.json` scripts
+
+```json
+"scripts": {
+  "prepare": "husky install"
+}
+```
+
+### 2.2 Run prepare
+
+```bash
+npx husky install
+```
+
+---
+
+## 🔹 Step 3: Create Pre-commit Hook
+
+```bash
+npx husky add .husky/pre-commit "npx lint-staged"
+```
+
+This creates `.husky/pre-commit` file with content:
+
+```bash
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+```
+
+---
+
+## 🔹 Step 4: Add `lint-staged` Config to `package.json`
+
+Add this at the root of `package.json`:
+
+```json
+"lint-staged": {
+  "*.{ts,js}": ["eslint --fix", "prettier --write"],
+  "*.{html,css,scss,json,md}": ["prettier --write"]
+}
+```
+
+---
+
+## 🔹 Step 5: Create ESLint Config
+
+Create `.eslintrc.js` in your project root:
+
+```js
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
+  ],
+  rules: {
+    'prettier/prettier': 'error'
+  },
+  ignorePatterns: ['dist/', 'node_modules/']
+};
+```
+
+---
+
+## 🔹 Step 6: Install TypeScript ESLint Support
+
+```bash
+npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin
+```
+
+---
+
+## 🔹 Step 7: Add Prettier Configs
+
+### `.prettierrc`
+
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "trailingComma": "all"
+}
+```
+
+### `.prettierignore`
+
+```
+node_modules
+dist
+coverage
+```
+
+---
+
+## 🔹 Step 8: Test the Setup
+
+1. Make a code change
+2. Stage it:
+   ```bash
+   git add .
+   ```
+3. Commit:
+   ```bash
+   git commit -m "test: lint check"
+   ```
+4. ✅ Lint and format will run automatically on staged files
+
+---
+
+## ✅ Done!
+
+You now have automated linting and formatting before each commit using:
+- Husky
+- Lint-Staged
+- ESLint
+- Prettier
+---
