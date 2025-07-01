@@ -13,7 +13,7 @@
     "pretest": "echo ...PRE TESTING...",
     "test": "echo ...TESTING....",
     "posttest": "echo ...POST TESTING...",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,6 @@
   },
   "homepage": "https://github.com/thalsi/npm#readme",
   "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

@@ -1,73 +1,92 @@
-
 ## 1. package.json
- - npm init or npm init -y
- - A standard Node.js project contains a file called package.json.
- - It is a JSON manifest file which holds all of the relevant data to the app.
- - `package.json` only tracks top-level dependencies for the project.
+
+- npm init or npm init -y
+- A standard Node.js project contains a file called package.json.
+- It is a JSON manifest file which holds all of the relevant data to the app.
+- `package.json` only tracks top-level dependencies for the project.
+
 1. want to publish
- - name, author, license, description — Important if you want to publish your repository.
+
+- name, author, license, description — Important if you want to publish your repository.
 
 2. Version
-  - If you are maintaining an open-source npm package, you should update it according to the semantic conventions. 3.7.2– 3 is the major version, 7 is the minor version, and 2 is the patch.
-3. Scripts 
-     - Here we put out project’s scripts: building, testing, linting, deploying, etc.
-     - Each project can have custom-made scripts adapted for a unique use-case
-     - Custom scripts can be added and used by developers to enhance development capabilities
-     - For example, executing end-to-end tests in a specific directory.
+
+- If you are maintaining an open-source npm package, you should update it according to the semantic conventions. 3.7.2– 3 is the major version, 7 is the minor version, and 2 is the patch.
+
+3. Scripts
+
+   - Here we put out project’s scripts: building, testing, linting, deploying, etc.
+   - Each project can have custom-made scripts adapted for a unique use-case
+   - Custom scripts can be added and used by developers to enhance development capabilities
+   - For example, executing end-to-end tests in a specific directory.
 
 4. dependencies
-- Required for building the project. 
+
+- Required for building the project.
 - A dependency is a library that a project needs to function effectively.
 
 5. DevDependencies
+
 - DevDependencies are the packages a developer needs during development.
 - The dependencies needed only for the development of the project but not for building it.
 
 ## package-lock.json
+
 - package-lock.json is generated automatically for any operations where npm modifies either the node_modules tree, or package.json. It describes the exact tree that was generated, such that subsequent installs can generate identical trees. This is used to save an exact copy of the packages to ensure that the program works the same on different machines.
+
 ## node_modules
+
 - When you run npm install, npm installs the required packages into your project root directory in a folder called node_modules.
+
 ---
+
 ## 🧾 What is .npmrc?
 
 - .npmrc is a settings file for npm (Node Package Manager).
-It tells npm how to behave when installing or publishing packages.
+  It tells npm how to behave when installing or publishing packages.
 
 🧠 Why use .npmrc?
-  - Imagine you are working on a project.
+
+- Imagine you are working on a project.
 
 You want:
-  - To download packages from a private registry (like your company’s server).
-  - To use a login token for authentication.
-  - To install packages exactly like 1.2.3, not ^1.2.3.
-  - To make npm faster and quieter in a CI/CD pipeline.
-  - To use different settings for each project.
+
+- To download packages from a private registry (like your company’s server).
+- To use a login token for authentication.
+- To install packages exactly like 1.2.3, not ^1.2.3.
+- To make npm faster and quieter in a CI/CD pipeline.
+- To use different settings for each project.
 
 Choose your use-case:
-  - ✅ Use npm with private company registry
-      - Example: https://npm.my-company.com/
-  - ✅ Use GitHub Packages
-      - Example: @your-name/package from GitHub
-  - ✅ Use GitLab, Nexus, or Artifactory registry
-  - ✅ Add proxy (for working inside office network)
-  - ✅ CI/CD setup (like GitHub Actions, GitLab CI)
+
+- ✅ Use npm with private company registry
+  - Example: https://npm.my-company.com/
+- ✅ Use GitHub Packages
+  - Example: @your-name/package from GitHub
+- ✅ Use GitLab, Nexus, or Artifactory registry
+- ✅ Add proxy (for working inside office network)
+- ✅ CI/CD setup (like GitHub Actions, GitLab CI)
 
 ---
-##  When to Use peerDependencies?
+
+## When to Use peerDependencies?
 
 - When you create a library/package, you use some common packages — like react, angular, or rxjs.
-But you don’t want to install them again. You want the main app to give them.
+  But you don’t want to install them again. You want the main app to give them.
 
 So you say:
+
 > “I need react, but the user must install it. I will only use it.”
 
 That’s what peerDependencies means.
 
 ### 🔁 Why Use peerDependencies?
+
 Because:
-  - Don’t want duplicate lodash.
-  - Want to use same lodash in many boxes.
-  - Want main app to control version.
+
+- Don’t want duplicate lodash.
+- Want to use same lodash in many boxes.
+- Want main app to control version.
 
 1. package.json for Your Angular Library (my-ui-lib)
 
@@ -96,11 +115,13 @@ Because:
   }
 }
 ```
+
 ✅ This says:
-  peerDependencies: used by the main app
-  devDependencies: used by your library only, for local development and building
+peerDependencies: used by the main app
+devDependencies: used by your library only, for local development and building
 
 2. package.json for Your Angular App (my-app)
+
 ```
 {
   "name": "my-app",
@@ -118,19 +139,23 @@ Because:
   }
 }
 ```
+
 ✅ This means:
 The app installs my-ui-lib
 Also installs the shared dependencies: Angular and RxJS
+
 ---
 
-## optionalDependencies 
+## optionalDependencies
+
 In your package.json, the optionalDependencies field is used to specify non-critical packages — these are packages your project can work without, but will use if available.
 
 When to Use optionalDependencies
 Use optionalDependencies when:
-  - A package is useful but not required.
-  - Your app should still run even if the package fails to install.
-  - You’re supporting multiple platforms where some packages only work on certain OSes.
+
+- A package is useful but not required.
+- Your app should still run even if the package fails to install.
+- You’re supporting multiple platforms where some packages only work on certain OSes.
 
 ```
 {
@@ -146,37 +171,47 @@ Use optionalDependencies when:
 In this example, if fsevents fails to install (like on Windows), npm will not stop the install process.
 
 ```
+
 ## npm link
+
 Linking local packages with npm link is useful when you're developing multiple Node.js packages and want to test one package (my-lib) inside another project (my-app) without publishing it to npm.
 
 Simple Steps to Use npm link (for Local Development)
 
 1. Inside your local library folder (e.g., my-lib)
+
 ```
 cd /path/to/my-lib
 npm link
 ```
+
 This creates a global symlink for my-lib.
 
 2. Inside your consuming project (e.g., my-app)
+
 ```
 cd /path/to/my-app
 npm link my-lib
 ```
+
 This links my-lib into node_modules of my-app from the global symlink.
 
 File Structure Example
+
 ```
  /projects/
   ├── my-lib/       ← your local reusable library
   └── my-app/       ← your application consuming that lib
 ```
+
 -When to Use
-  During active development of local packages.
-  To test changes before publishing to npm.
+During active development of local packages.
+To test changes before publishing to npm.
+
 ---
 
 ## To Unlink
+
 ```
 Inside my-app:
 npm unlink my-lib
@@ -187,9 +222,11 @@ npm unlink
 ```
 
 ## Create a public/private npm package
+
 complete step-by-step plan to create and publish your own Angular NPM package named ngx-smart-loading.
 
-###  Step 1: Generate the Angular Workspace & Library
+### Step 1: Generate the Angular Workspace & Library
+
 1. Create Angular Workspace
 
 ```
@@ -231,6 +268,7 @@ ng build ngx-smart-loading
 ```
 
 It will output to:
+
 ```
 dist/ngx-smart-loading/
 ```
@@ -238,27 +276,31 @@ dist/ngx-smart-loading/
 4. Test in a Local App (Optional but Recommended)
 
 1. Option 1 — Link locally
-  ```
-  cd dist/ngx-smart-loading
-  npm link
-  ```
 
-  Then in your test app:
-  ```
-  npm link ngx-smart-loading
-  ```
+```
+cd dist/ngx-smart-loading
+npm link
+```
+
+Then in your test app:
+
+```
+npm link ngx-smart-loading
+```
 
 2. Option 2 — Create test app in same workspace
 
-  ```
-  ng generate application demo-app
+```
+ng generate application demo-app
 
-  ```
-  Then import SmartLoadingModule in demo-app/src/app/app.module.ts.
+```
+
+Then import SmartLoadingModule in demo-app/src/app/app.module.ts.
 
 5. Prepare for NPM Publish
 
 1. Add metadata to:
+
 ```
 projects/ngx-smart-loading/package.json
 
@@ -278,32 +320,37 @@ projects/ngx-smart-loading/package.json
 }
 
 ```
+
 6. Publish to NPM
 
 In your terminal (PowerShell or CMD), run:
+
 ```
 npm login
 ```
-You’ll be asked for:
-  Username (your npm account username)
-  Password
-  Email
 
- After login:
- ```
+You’ll be asked for:
+Username (your npm account username)
+Password
+Email
+
+After login:
+
+```
 cd dist/ngx-spinner-loading
 npm publish --access public
- ```
+```
 
- 7. Step-by-Step Setup for GitHub Private Packages
+7.  Step-by-Step Setup for GitHub Private Packages
 
- 1. Prerequisites
-  A GitHub account
-  Your Angular monorepo (e.g., core-monorepo)
-  Your libraries (libs/core, libs/shared-ui)
-  A GitHub Personal Access Token (PAT) with write:packages and read:packages
+1.  Prerequisites
+    A GitHub account
+    Your Angular monorepo (e.g., core-monorepo)
+    Your libraries (libs/core, libs/shared-ui)
+    A GitHub Personal Access Token (PAT) with write:packages and read:packages
 
-2. Add package.json in each library
+1.  Add package.json in each library
+
 ```
 {
   "name": "@your-org/core",
@@ -317,7 +364,9 @@ npm publish --access public
   }
 }
 ```
+
 3. Add ng-package.json
+
 ```
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
@@ -328,19 +377,22 @@ npm publish --access public
 }
 
 ```
+
 4. Build the library
+
 ```
 ng build core
 ng build shared-ui
 
 ```
 
- 5. Authenticate to GitHub Package Registry
+5.  Authenticate to GitHub Package Registry
 
- ```
- npm login --registry=https://npm.pkg.github.com
+```
+npm login --registry=https://npm.pkg.github.com
 
- ```
+```
+
 When asked:
 Username: your GitHub username
 Password: your GitHub Personal Access Token
@@ -349,43 +401,47 @@ Email: your GitHub email
 📌 Create a token at GitHub PAT settings
 ✅ Required scopes: write:packages, read:packages, repo
 
- 6. Publish the package
- ```
-    cd dist/core
-    npm publish
+6.  Publish the package
 
-    cd ../shared-ui
-    npm publish
+```
+   cd dist/core
+   npm publish
 
- ```
+   cd ../shared-ui
+   npm publish
 
- 7. Install in Client Repo (client-a, etc.)
+```
 
- In the client repo:
- Add .npmrc (in root):
+7.  Install in Client Repo (client-a, etc.)
+
+In the client repo:
+Add .npmrc (in root):
+
 ```
 @your-org:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 
 ```
+
 > 🔐 Use a read-only token with read:packages scope
 
 Then install:
+
 ```
 npm install @your-org/core
 npm install @your-org/shared-ui
 
 ```
 
- ---
+---
 
- ## What is  monorepo in nmp?
+## What is monorepo in nmp?
 
- A monorepo (short for monolithic repository) in npm is a single Git repository that contains multiple packages or projects — all managed together in one place.
+A monorepo (short for monolithic repository) in npm is a single Git repository that contains multiple packages or projects — all managed together in one place.
 
 In the context of npm, a monorepo uses the workspaces feature to manage these multiple packages efficiently.
 
-### 🔍 What is  monorepo in nmp?
+### 🔍 What is monorepo in nmp?
 
 A monorepo (short for monolithic repository) in npm is a single Git repository that contains multiple packages or projects — all managed together in one place.
 Instead of this:
@@ -395,6 +451,7 @@ Instead of this:
 ✅ repo-2/ → ngx-smart-loading
 
 You use one repo:
+
 ```
 monorepo/
 ├── package.json (root) ← defines all workspaces
@@ -406,7 +463,8 @@ monorepo/
 
 ```
 
-###  Benefits of Monorepo
+### Benefits of Monorepo
+
 🔗 Easy code sharing between packages
 🔧 Centralized dependency management
 🚀 One place to build, test, and deploy
@@ -420,12 +478,13 @@ monorepo/
 ✅ Goal
 We’ll create a monorepo with two Angular-based libraries:
 
-  ngx-spinner-loading
-  ngx-smart-loading
+ngx-spinner-loading
+ngx-smart-loading
 
 All managed from a single repository using npm workspaces.
 
 #### Final Folder Structure
+
 ```
 angular-monorepo/
 ├── angular.json
@@ -452,11 +511,14 @@ angular-monorepo/
 #### Step-by-Step Setup Instructions
 
 1. Create Angular Workspace (Empty)
+
 ```
 ng new angular-monorepo --create-application=false
 cd angular-monorepo
 ```
+
 2. Setup Workspaces in package.json
+
 ```
 {
   "name": "angular-monorepo",
@@ -469,12 +531,14 @@ cd angular-monorepo
 }
 ```
 
- 3. Create Libraries
- ```
+3.  Create Libraries
+
+```
 ng generate library ngx-spinner-loading --project-root=projects/ngx-spinner-loading
 ng generate library ngx-smart-loading --project-root=projects/ngx-smart-loading
 
- ```
+```
+
 > 🔒 "private": true is required when using workspaces in npm.
 
 2. Project-Based Angular Monorepo — designed for internal code sharing between apps and libraries (no npm publishing).
@@ -498,6 +562,7 @@ cd angular-monorepo
 ```
 
 2. Step 2: Generate App and Libraries
+
 ```
 # Create main application
 ng generate application main-app
@@ -509,7 +574,9 @@ ng generate library shared-ui
 ng generate library feature-auth
 
 ```
+
 Folder structure becomes:
+
 ```
 angular-monorepo/
 ├── projects/
@@ -523,6 +590,7 @@ angular-monorepo/
 3. Step 3: Add Code in shared-ui
 
 File: projects/shared-ui/src/lib/shared-ui.module.ts
+
 ```
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -536,7 +604,9 @@ import { SharedButtonComponent } from './shared-button.component';
 export class SharedUiModule {}
 
 ```
+
 Create component: projects/shared-ui/src/lib/shared-button.component.ts
+
 ```
 import { Component } from '@angular/core';
 
@@ -547,7 +617,8 @@ import { Component } from '@angular/core';
 export class SharedButtonComponent {}
 
 ```
- Step 4: Use Libraries in App
+
+Step 4: Use Libraries in App
 
 ```
 import { NgModule } from '@angular/core';
@@ -570,18 +641,21 @@ export class AppModule {}
 ```
 
 Edit src/app/app.component.html:
+
 ```
 <h1>Main App</h1>
 <lib-shared-button></lib-shared-button>
 ```
 
 5. Step 5 :Serve the App
+
 ```
 ng serve --project=main-app
 
 ```
 
 You should see:
+
 ```
 Main App
 [Shared Button]
@@ -590,6 +664,7 @@ Main App
 ## Scalable Angular Monorepo
 
 👇 Structure Overview (Simple but Scalable)
+
 ```
 angular-enterprise/
 ├── angular.json
@@ -609,12 +684,14 @@ angular-enterprise/
 ### 🛠 Step-by-Step Setup
 
 1. Create Workspace Without App
+
 ```
 ng new angular-enterprise --create-application=false
 cd angular-enterprise
 ```
 
 2. Create Apps
+
 ```
 ng generate application admin-panel --project-root=projects/apps/admin-panel
 ng generate application customer-portal --project-root=projects/apps/customer-portal
@@ -622,6 +699,7 @@ ng generate application customer-portal --project-root=projects/apps/customer-po
 ```
 
 3. Create Core and Shared Libraries
+
 ```
 ng generate library core --project-root=projects/libs/core
 ng generate library shared-ui --project-root=projects/libs/shared-ui
@@ -629,6 +707,7 @@ ng generate library shared-ui --project-root=projects/libs/shared-ui
 ```
 
 4. Create Feature Libraries
+
 ```
 ng generate library feature-auth --project-root=projects/libs/feature-auth
 ng generate library feature-products --project-root=projects/libs/feature-products
@@ -636,44 +715,52 @@ ng generate library feature-products --project-root=projects/libs/feature-produc
 ```
 
 5. Run Any App
+
 ```
 ng serve --project=admin-panel
 ng serve --project=customer-portal
 
 ```
 
-6.  Build 
+6.  Build
 
- 1. Build Everything (Manual)
- ```
+1.  Build Everything (Manual)
+
+```
 ng build shared-ui
 ng build feature-auth
 ng build core
 ng build admin-panel
 ng build customer-portal
 
- ```
- 2. Build All (with Script)
+```
 
- In your root package.json, add:
- ```
- "scripts": {
-  "build:all": "ng build shared-ui && ng build feature-auth && ng build core && ng build admin-panel"
+2.  Build All (with Script)
+
+In your root package.json, add:
+
+```
+"scripts": {
+ "build:all": "ng build shared-ui && ng build feature-auth && ng build core && ng build admin-panel"
 }
 
- ```
+```
 
- Run it:
- ```
- npm run build:all
+Run it:
 
- ```
+```
+npm run build:all
+
+```
+
 ---
+
 ## npx?
 
 npx is a powerful tool that comes with Node.js (since version 5.2.0 of npm) and allows you to run CLI tools without installing them globally.
 
 ### Why use npx?
+
 - Run the latest version of a package.
 - Avoid global installs and pollution.
 - Easily test CLI tools or scripts.
@@ -682,45 +769,49 @@ Imagine this:
 
 ✅ Without npx
 You have to install a tool first:
+
 ```
 npm install -g create-react-app
 
 ```
+
 This:
-  - Takes space on your system.
-  - Might cause version conflicts.
-  - Pollutes global tools list.
 
-
+- Takes space on your system.
+- Might cause version conflicts.
+- Pollutes global tools list.
 
 ✅ With npx
 You can use the tool immediately:
+
 ```
 npx create-react-app my-app
 ```
+
 This:
-  - No install needed.
-  - Always runs the latest version.
-  - Temporary — it's deleted after use
+
+- No install needed.
+- Always runs the latest version.
+- Temporary — it's deleted after use
 
 ---
 
 ### npm ci
 
 1. What is npm ci?
+
 - It is a faster and cleaner way to install node_modules.
 
 2.  Difference: npm install vs npm ci
-| Command       | What it does                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `npm install` | Installs packages normally. May change `package-lock.json`.                                                               |
-| `npm ci`      | Installs packages **exactly as locked**, and **faster**. Never changes `package-lock.json`. Deletes `node_modules` first. |
+    | Command | What it does |
+    | ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+    | `npm install` | Installs packages normally. May change `package-lock.json`. |
+    | `npm ci` | Installs packages **exactly as locked**, and **faster**. Never changes `package-lock.json`. Deletes `node_modules` first. |
 
 ---
 
-
-
 ## webpack-bundle-analyzer
+
 It's a tool that shows you:
 
 > “Which files and libraries are making your app big.”
@@ -730,39 +821,57 @@ It opens a chart in your browser where you can see what’s inside your bundle.
 ### in angualr
 
 1. Step 1: Build the app for production with source maps
+
 ```
 ng build --configuration production --source-map
 
 ```
+
 > ✅ This creates your optimized bundle and .map files needed for analysis.
 
 2.  Step 2: Install the analyzer tool
+
 ```
 npm install -g source-map-explorer
 
 ```
+
 > This is the recommended tool for Angular projects.
 
 3.  Step 3: Analyze the main bundle
 
-Find your main.*.js file in:
+Find your main.\*.js file in:
+
 ```
 dist/<your-project-name>/
 
 ```
+
 Run this command:
+
 ```
 npx source-map-explorer dist/your-project-name/main.*.js
 
 ```
 
 4. 📈 Result
-It will:
+   It will:
 
-  Open a browser window
+Open a browser window
 
-  Show a colorful chart:
+Show a colorful chart:
 
-  Big boxes = big files
+Big boxes = big files
 
-  You’ll see what's inside main.js
+You’ll see what's inside main.js
+
+---
+
+## Git Hooks
+
+| Tool        | Role                            |
+| ----------- | ------------------------------- |
+| Husky       | Manages Git hooks               |
+| lint-staged | Runs tools only on staged files |
+| ESLint      | Lints TypeScript & JavaScript   |
+| Prettier    | Formats code consistently       |
