@@ -867,11 +867,15 @@ You’ll see what's inside main.js
 
 ---
 
-## Git Hooks
+## Recommended Tools
 
-| Tool        | Role                            |
-| ----------- | ------------------------------- |
-| Husky       | Manages Git hooks               |
-| lint-staged | Runs tools only on staged files |
-| ESLint      | Lints TypeScript & JavaScript   |
-| Prettier    | Formats code consistently       |
+| Tool                     | Why Use It                                                 | Runs When               |
+| ------------------------ | ---------------------------------------------------------- | ----------------------- |
+| **ESLint**               | Finds code bugs, unused vars, bad syntax, etc.             | Manually / Pre-commit   |
+| **Prettier**             | Formats code nicely (indentation, spacing, etc.)           | Manually / Pre-commit   |
+| **Markdownlint**         | Lints `.md` files (like `README.md`, docs)                 | Manually / Pre-commit   |
+| **Husky**                | Runs checks automatically on Git events                    | Pre-commit              |
+| **Lint-Staged**          | Runs `eslint`, `prettier`, etc. only on staged files       | Pre-commit (with Husky) |
+| **Commitlint**           | Checks if commit messages follow rules                     | Commit-msg (via Husky)  |
+| **Conventional Commits** | Standard style for commit messages (e.g., `feat:`, `fix:`) | Commit messages         |
+| **semantic-release**     | Fully automated release system based on commits            | On CI/CD (after commit) |

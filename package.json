@@ -26,7 +26,5 @@
     "url": "https://github.com/thalsi/npm/issues"
   },
   "homepage": "https://github.com/thalsi/npm#readme",
-  "devDependencies": {
-    "husky": "^9.1.7"
-  }
+  "devDependencies": {}
 }
