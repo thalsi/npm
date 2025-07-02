@@ -14,7 +14,6 @@
 - If you are maintaining an open-source npm package, you should update it according to the semantic conventions. 3.7.2– 3 is the major version, 7 is the minor version, and 2 is the patch.
 
 3. Scripts
-
    - Here we put out project’s scripts: building, testing, linting, deploying, etc.
    - Each project can have custom-made scripts adapted for a unique use-case
    - Custom scripts can be added and used by developers to enhance development capabilities
@@ -880,7 +879,6 @@ You’ll see what's inside main.js
 | **Conventional Commits** | Standard style for commit messages (e.g., `feat:`, `fix:`) | Commit messages         |
 | **semantic-release**     | Fully automated release system based on commits            | On CI/CD (after commit) |
 
-
 # ✅ Husky + Lint-Staged + ESLint + Prettier Setup Guide
 
 A complete step-by-step setup to run automatic lint and format checks before Git commits.
@@ -890,6 +888,7 @@ A complete step-by-step setup to run automatic lint and format checks before Git
 ## 🎯 Goal
 
 Use:
+
 - **Husky** to run Git hooks
 - **Lint-Staged** to run linters only on staged files
 - **ESLint** to fix lint errors
@@ -965,12 +964,12 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
   },
-  ignorePatterns: ['dist/', 'node_modules/']
+  ignorePatterns: ['dist/', 'node_modules/'],
 };
 ```
 
@@ -1026,10 +1025,12 @@ coverage
 ## ✅ Done!
 
 You now have automated linting and formatting before each commit using:
+
 - Husky
 - Lint-Staged
 - ESLint
 - Prettier
+
 ---
 
 ## Automate tasks with `npm-run-all` or `concurrently`
@@ -1042,29 +1043,31 @@ They help run multiple npm scripts together in a sequence or parallel, which is 
 ✅ 1. Run Dev Server + Watch Files Together
 You want to:
 
-  Serve your app (vite, webpack-dev-server, ng serve)
-  Watch or rebuild files (tsc --watch, webpack --watch)
-  Auto-run other tasks (like live-reload or tailwind build)
+Serve your app (vite, webpack-dev-server, ng serve)
+Watch or rebuild files (tsc --watch, webpack --watch)
+Auto-run other tasks (like live-reload or tailwind build)
 Use: concurrently
+
 ```
 "dev": "concurrently \"npm run serve\" \"npm run watch\""
 ```
 
-
 ✅ 2. Run Lint → Format → Test → Build (in order)
 You want to:
 
-  Lint code (eslint)
-  Format code (prettier)
-  Run tests (jest, vitest)
-  Then build
+Lint code (eslint)
+Format code (prettier)
+Run tests (jest, vitest)
+Then build
 
 Use: npm-run-all (sequential)
+
 ```
 "check": "npm-run-all lint format test build"
 ```
 
 ---
+
 # 📦 Dependency Management with `npm-check`
 
 `npm-check` is a developer-friendly CLI tool to help you manage your `package.json` dependencies interactively. It checks for:
@@ -1085,31 +1088,36 @@ npm install -g npm-check
 ```
 
 Or as a dev dependency:
+
 ```
 npm install --save-dev npm-check
 
 ```
 
 1. Run the interactive checker
+
 ```
 npx npm-check
 
 ```
 
 2. Clean Unused Packages
-> Remove --skip-unused to show and optionally remove unused packages.
+   > Remove --skip-unused to show and optionally remove unused packages.
+
 ```
 npx npm-check --skip-unused
 
 ```
 
 3. Check DevDependencies Only
+
 ```
 npx npm-check --dev
 
 ```
 
 4. Add a Script to package.json
+
 ```
 {
   "scripts": {
@@ -1118,12 +1126,16 @@ npx npm-check --dev
 }
 
 ```
+
 then run:
+
 ```
 npm run check-deps
 
 ```
+
 ---
+
 ## npm, npx, yarn
 
 | Tool   | Purpose                                   | Global Install Required | Main Use Case                            |
@@ -1131,7 +1143,6 @@ npm run check-deps
 | `npm`  | Install/manage packages                   | Yes (for global tools)  | Day-to-day package management            |
 | `npx`  | Run a package without installing          | No                      | One-time tool usage                      |
 | `yarn` | Install/manage packages (npm alternative) | Yes                     | Faster, consistent dependency management |
-
 
 # 📦 Step-by-Step: `.npmrc` with Auth Tokens for Private Packages
 
@@ -1165,11 +1176,13 @@ This guide explains how to set up authentication tokens in your `.npmrc` file to
 Create a `.npmrc` file in your project root and paste:
 
 #### For **npmjs.com**:
+
 ```ini
 //registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN
 ```
 
 For GitHub Packages (Scoped):
+
 ```
 @your-org:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
@@ -1177,6 +1190,7 @@ For GitHub Packages (Scoped):
 ```
 
 For Custom Registry:
+
 ```
 registry=https://npm.yourcompany.com/
 //npm.yourcompany.com/:_authToken=YOUR_PRIVATE_TOKEN
@@ -1184,6 +1198,7 @@ registry=https://npm.yourcompany.com/
 ```
 
 ✅ Step 3: Add .npmrc to .gitignore
+
 ```
 .npmrc
 ```
