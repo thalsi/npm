@@ -1031,3 +1031,95 @@ You now have automated linting and formatting before each commit using:
 - ESLint
 - Prettier
 ---
+
+## Automate tasks with `npm-run-all` or `concurrently`
+
+Both npm-run-all and concurrently are powerful tools for automating tasks in package.json scripts.
+
+✅ Purpose
+They help run multiple npm scripts together in a sequence or parallel, which is useful for building, linting, testing, serving, etc.
+
+✅ 1. Run Dev Server + Watch Files Together
+You want to:
+
+  Serve your app (vite, webpack-dev-server, ng serve)
+  Watch or rebuild files (tsc --watch, webpack --watch)
+  Auto-run other tasks (like live-reload or tailwind build)
+Use: concurrently
+```
+"dev": "concurrently \"npm run serve\" \"npm run watch\""
+```
+
+
+✅ 2. Run Lint → Format → Test → Build (in order)
+You want to:
+
+  Lint code (eslint)
+  Format code (prettier)
+  Run tests (jest, vitest)
+  Then build
+
+Use: npm-run-all (sequential)
+```
+"check": "npm-run-all lint format test build"
+```
+
+---
+# 📦 Dependency Management with `npm-check`
+
+`npm-check` is a developer-friendly CLI tool to help you manage your `package.json` dependencies interactively. It checks for:
+
+- ✅ Outdated dependencies
+- 🧹 Unused packages
+- 🆕 New versions (including major updates)
+- 📌 Safe package upgrades
+
+---
+
+## 🔧 Installation
+
+Install it globally:
+
+```bash
+npm install -g npm-check
+```
+
+Or as a dev dependency:
+```
+npm install --save-dev npm-check
+
+```
+
+1. Run the interactive checker
+```
+npx npm-check
+
+```
+
+2. Clean Unused Packages
+> Remove --skip-unused to show and optionally remove unused packages.
+```
+npx npm-check --skip-unused
+
+```
+
+3. Check DevDependencies Only
+```
+npx npm-check --dev
+
+```
+
+4. Add a Script to package.json
+```
+{
+  "scripts": {
+    "check-deps": "npm-check"
+  }
+}
+
+```
+then run:
+```
+npm run check-deps
+
+```

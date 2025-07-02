@@ -183,8 +183,8 @@ Git hooks
 - [x] Use `npm ci` for faster clean installs in CI
 - [x] Analyze bundle size: `webpack-bundle-analyzer`
 - [x] Use `husky` + `lint-staged` for Git hooks
-- [ ] Automate tasks with `npm-run-all` or `concurrently`
-- [ ] Use `npm-check` to update interactively
+- [x] Automate tasks with `npm-run-all` or `concurrently`
+- [x] Use `npm-check` to update interactively
 
 ---
 

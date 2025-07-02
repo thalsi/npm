@@ -1,0 +1,60 @@
+<form [formGroup]="form">
+
+  <!-- Audit ID -->
+  <div>
+    <label>Audit ID:</label>
+    <input formControlName="am_audit_id" placeholder="Enter Audit ID" />
+  </div>
+
+  <hr />
+
+  <!-- Scopes Array -->
+  <div formArrayName="am_individual_audit_plan_scopes_array">
+    <div *ngFor="let scopeGroup of auditPlanScopesArray.controls; let scopeIndex = index" [formGroupName]="scopeIndex" style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px;">
+
+      <!-- Scope ID -->
+      <div>
+        <label>Scope ID:</label>
+        <input formControlName="scopes_id" placeholder="Enter Scope ID" />
+        <button type="button" (click)="addProcess(scopeIndex)">Add Process</button>
+      </div>
+
+      <br />
+
+      <!-- Processes Array -->
+      <div formArrayName="processes">
+        <div *ngFor="let processGroup of getProcessesArray(scopeIndex).controls; let processIndex = index" [formGroupName]="processIndex" style="margin-left: 20px; border: 1px dashed #999; padding: 10px;">
+
+          <!-- Process ID -->
+          <div>
+            <label>Process ID:</label>
+            <input formControlName="scope_process_id" placeholder="Enter Process ID" />
+            <button type="button" (click)="addLanguage(scopeIndex, processIndex, 1)">Add Lang 1</button>
+            <button type="button" (click)="addLanguage(scopeIndex, processIndex, 2)">Add Lang 2</button>
+          </div>
+
+          <br />
+
+          <!-- Languages Array -->
+          <div formArrayName="languages">
+            <div *ngFor="let langGroup of getLanguagesArray(scopeIndex, processIndex).controls; let langIndex = index" [formGroupName]="langIndex" style="margin-left: 20px;">
+
+              <label>Language ID:</label>
+              <input formControlName="language_id" />
+
+              <label>Narration:</label>
+              <input formControlName="process_narration_understanding" placeholder="Enter narration" />
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br />
+  <button type="button" (click)="addScope()">Add Scope</button>
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
