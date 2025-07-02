@@ -190,11 +190,11 @@ Git hooks
 
 ## 🧠 Bonus Knowledge
 
-- [ ] What’s the difference between `npm`, `npx`, and `yarn`?
-- [ ] Explore the `node_modules` folder structure
-- [ ] Learn about ESModules vs CommonJS in packages
-- [ ] Understand npm registries (default and custom)
-- [ ] Set up `.npmrc` auth tokens for private packages
+- [x] What’s the difference between `npm`, `npx`, and `yarn`?
+- [x] Explore the `node_modules` folder structure
+- [x] Learn about ESModules vs CommonJS in packages
+- [x] Understand npm registries (default and custom)
+- [x] Set up `.npmrc` auth tokens for private packages
 
 ---
 

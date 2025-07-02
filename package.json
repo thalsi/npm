@@ -4,16 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "echo ...PRE START...",
-    "start": "echo  ...STARTING...",
-    "poststart": "echo ...POST START...",
-    "prebuild": "echo ...PRE BUILD...",
-    "build": "echo ...BUILDING...",
-    "postbuild": "echo ....POST BUILD....",
-    "pretest": "echo ...PRE TESTING...",
-    "test": "echo ...TESTING....",
-    "posttest": "echo ...POST TESTING...",
-    "prepare": "husky install"
+    
   },
   "repository": {
     "type": "git",
@@ -27,24 +18,6 @@
   },
   "homepage": "https://github.com/thalsi/npm#readme",
   "devDependencies": {
-    "@eslint/js": "^9.30.0",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
-    "@typescript-eslint/parser": "^8.35.1",
-    "eslint": "^9.30.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.5.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.6.2",
-    "typescript-eslint": "^8.35.1"
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{css,scss,html,json,md}": [
-      "prettier --write"
-    ]
+  
   }
 }

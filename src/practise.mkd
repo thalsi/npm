@@ -1123,3 +1123,67 @@ then run:
 npm run check-deps
 
 ```
+---
+## npm, npx, yarn
+
+| Tool   | Purpose                                   | Global Install Required | Main Use Case                            |
+| ------ | ----------------------------------------- | ----------------------- | ---------------------------------------- |
+| `npm`  | Install/manage packages                   | Yes (for global tools)  | Day-to-day package management            |
+| `npx`  | Run a package without installing          | No                      | One-time tool usage                      |
+| `yarn` | Install/manage packages (npm alternative) | Yes                     | Faster, consistent dependency management |
+
+
+# 📦 Step-by-Step: `.npmrc` with Auth Tokens for Private Packages
+
+This guide explains how to set up authentication tokens in your `.npmrc` file to install or publish private npm packages.
+
+---
+
+## ✅ Step 1: Create / Get Your Auth Token
+
+### 🔹 For npmjs.com
+
+1. Go to [https://www.npmjs.com/](https://www.npmjs.com/)
+2. Sign in and navigate to **Access Tokens**:
+   [https://www.npmjs.com/settings/YOUR_USERNAME/tokens](https://www.npmjs.com/settings/YOUR_USERNAME/tokens)
+3. Create a new **Automation** or **Read-only** token.
+
+### 🔹 For GitHub Packages
+
+1. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens)
+2. Click "Generate new token" (classic)
+3. Enable the following scopes:
+   - `read:packages` — for installation
+   - `write:packages` — for publishing
+
+---
+
+## ✅ Step 2: Add the Token to `.npmrc`
+
+### 📁 Option A: Project-level `.npmrc` (recommended)
+
+Create a `.npmrc` file in your project root and paste:
+
+#### For **npmjs.com**:
+```ini
+//registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN
+```
+
+For GitHub Packages (Scoped):
+```
+@your-org:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_PAT
+
+```
+
+For Custom Registry:
+```
+registry=https://npm.yourcompany.com/
+//npm.yourcompany.com/:_authToken=YOUR_PRIVATE_TOKEN
+
+```
+
+✅ Step 3: Add .npmrc to .gitignore
+```
+.npmrc
+```
